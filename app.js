@@ -44,6 +44,9 @@ const eventApp = Vue.createApp({
         confirmName(event) {
             this.confirmedName = event.target.value;
         },
+        clearInput() {
+            this.name = '';
+        },
         submitForm() {
             // event.preventDefault();
             alert('Submitted!');

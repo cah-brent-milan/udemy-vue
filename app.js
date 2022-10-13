@@ -27,6 +27,19 @@ const eventApp = Vue.createApp({
         confirmedName: ''
       };
     },
+    watch: {
+        counter(value) {
+            if( value > 50 ) {
+                alert('Counter exceeded maximum');
+                this.counter = 0;
+            }
+        }
+    },
+    computed: {
+        fullName() {
+            return this.name === '' ? '' :  this.name + ' ' + 'Maximilian';
+        }
+    },
     methods: {
         increase() {
             this.counter += 1;

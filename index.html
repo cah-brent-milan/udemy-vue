@@ -37,7 +37,7 @@
       <!-- v-model shorthands v-bind:value + v-on:input-->
       <!-- <input type="text" v-model="name"> -->
       <button v-on:click="clearInput">Clear Input</button>
-      <p>Your Name: {{ name }}</p>
+      <p>Your Name: {{ fullName }}</p>
       <p>Confirmed Name: {{ confirmedName }}</p>
 
       <form v-on:submit.prevent="submitForm">

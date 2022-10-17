@@ -20,12 +20,34 @@
       <h2>My course goals</h2>
       <input v-model="userInput" type="text" />
       <button @click="addGoal">Add Goal</button>
-      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+
       <!-- v-else works with direct neighbor to v-if -->
       <!-- v-show can be used if you want element to be in dom, but hidden -->
+      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
       <ul v-else>
-        <li v-for="goal in goals">{{ goal }}</li>
+        <!-- use :key with a unique id to improve li element behavior-->
+        <li v-for="goal in goals">
+          {{ goal }}
+        </li>
       </ul>
+      <!-- -->
+      <h2>List Index Iteration</h2>
+      <ul>
+        <li 
+        v-for="(goal, index) in goals"
+        @click="removeGoal(index)"
+        >
+        {{index + 1}}: {{ goal }}</li>
+      </ul>
+      <h2>Object Parameter Iteration</h2>
+      <ul>
+        <li v-for="value in obj">{{ value }}</li>
+      </ul>
+      <h2>Object Key-Value Iteration</h2>
+      <ul>
+        <li v-for="(value, key) in obj">key: {{ key }} value: {{ value }}</li>
+      </ul>
+
     </section>
   </body>
 </html>

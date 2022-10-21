@@ -36,11 +36,13 @@
       >
         <h2>Game Over</h2>
         <div class="">
-          <p v-if="!playerHealth">You have been defeated.</p>
-          <p v-if="!monsterHealth">You have slain the monster!</p>
+          <p v-if="isLoss">You have been defeated.</p>
+          <p v-if="isWin">You have slain the monster!</p>
+          <p v-if="isDraw">You and the monster have both fallen.</p>
+          <button @click="newGame">Start New Game</button>
         </div>
       </section>
-      <section id="controls">
+      <section id="controls" v-if="!isGameOver">
         <button @click="attack">ATTACK</button>
         <button 
           @click="specialAttack"
@@ -49,10 +51,21 @@
         </button>
         <button @click="heal">HEAL</button>
         <button @click="surrender">SURRENDER</button>
+        <button v-if="testMode" @click="forceDraw">Force Draw</button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul>
+          <li v-for="log in logMessages">
+            <span :class="log.actionBy === 'Player' ? 'log--player' : 'log--monster'">
+              {{ log.actionBy }}
+            </span> 
+            <span :class="log.actionType === 'attacks' ? 'log--damage' : 'log--heal'">
+               {{" " + log.actionType}}
+            </span> 
+            for {{log.actionValue}}.
+          </li>
+        </ul>
       </section>
     </div>
   </body>
